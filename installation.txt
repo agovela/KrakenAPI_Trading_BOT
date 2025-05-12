@@ -1,0 +1,4 @@
+
+Install required Python libarries:
+pip install -r requirements.txt
+

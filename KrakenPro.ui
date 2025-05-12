@@ -1,0 +1,1429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1155</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Kraken Pro Trading Bot</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget
+{
+    color: #CDCDCD;
+    background-color: rgb(50, 50, 50);
+}
+
+
+
+QCheckBox { 
+	background-color: rgb(30, 30, 30);
+    border: 1px solid gray;
+}
+QCheckBox::indicator {
+    width: 10;
+    height: 10px;
+}
+
+
+
+QComboBox {
+	background-color: rgb(25, 25, 25);
+}
+
+
+
+QDoubleSpinBox {
+	background-color: rgb(25, 25, 25);
+}
+
+
+
+QGroupBox {
+    border: 1px solid black;
+    border-radius: 4;
+    font-weight: bold;
+}
+
+
+
+QHeaderView::section {
+	background-color: rgb(75, 75, 75);
+    color: orange;
+    padding: 5px;
+    height: 14px;
+}
+
+
+
+QLineEdit {
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+    border-radius: 1;
+    background-color: rgb(30, 30, 30); 
+}
+
+
+
+QListWidget
+{
+    background-color: rgb(35, 35, 35); 
+}
+
+
+
+QPushButton
+{
+    background-color: QLinearGradient(
+		x1: 0, y1: 0, x2: 0, y2: 1,
+		stop: 0 #656565,
+		stop: 0.1 rgb(100, 100, 100),
+		stop: 0.5 rgb(80, 80, 80),
+		stop: 0.9 rgb(60, 60, 60),
+		stop: 1 #464646
+		);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+QPushButton::hover {
+    color:  rgb(200, 200, 200);
+    border-radius: 6;
+    background-color: rgb(100, 100, 100); 
+}
+QPushButton::pressed {
+    color:  rgb(200, 200, 200);
+    background-color: rgb(75, 75, 75); 
+    border-color: #181818;
+    border-radius: 6;
+    border-style: inset;
+}
+
+
+
+QRadioButton::indicator:checked {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 6;
+}
+QRadioButton::indicator:unchecked {
+    background-color: rgb(30, 30, 30);
+    border: 1px solid gray;
+    border-radius: 6;
+}
+
+
+
+QScrollBar:vertical {
+	border: 1px solid rgb(125, 125, 125);
+    background-color: rgb(25, 75, 75);
+    width: 10px;
+ }
+QScrollBar:horizontal {
+	border: 1px solid rgb(125, 125, 125);
+    background-color: rgb(25, 75, 75);
+    height: 10px;
+ }
+
+
+
+QSlider::handle:horizontal {
+    background-color: red; 
+	width: 10;
+	height: 5;
+}
+QSlider::groove:horizontal {
+    background-color: black;
+    height: 3px;
+    border-radius: 4px;
+}
+
+
+
+QSpinBox {
+    background-color: rgb(30, 30, 30);
+}
+
+
+
+QTableWidget {
+    background-color: rgb(25, 25, 25);
+}
+
+QTableView::item:hover {
+    background-color: #FFE4C4;
+    color: black; 
+}
+
+
+
+QTreeView::item:hover {
+    background-color: #FFE4C4;
+	color: black;
+}
+
+
+
+QToolTip {
+    background-color: #8ad4ff;
+    color: black;
+    border: #8ad4ff solid 1px;
+    font: 10pt &quot;Georgia&quot;;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabs">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Triangular</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="connection_tab">
+       <attribute name="title">
+        <string>Connection</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="usage_label">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;How to use:&lt;/span&gt;&lt;br/&gt;1. Enable Demo Mode if you want to simulate trades.&lt;br/&gt;2. (Optional) Check 'Auto-select pairs' to let the bot pick the best pairs.&lt;br/&gt;3. Click Connect.&lt;br/&gt;4. If not using auto-select, select one or more trading pairs from the list.&lt;br/&gt;5. The bot will start trading based on your settings.&lt;/p&gt;&lt;p&gt;6. Done&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="loading_label">
+          <property name="styleSheet">
+           <string>color: #ffdc00; font-weight: bold; font-size: 16px;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="demo_group">
+          <property name="title">
+           <string>Demo Mode</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout">
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="demo_mode_checkbox">
+             <property name="text">
+              <string>Enable Demo Mode</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Demo Balance:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QDoubleSpinBox" name="demo_balance_input">
+             <property name="prefix">
+              <string>$</string>
+             </property>
+             <property name="decimals">
+              <number>2</number>
+             </property>
+             <property name="minimum">
+              <double>100.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>1000000.000000000000000</double>
+             </property>
+             <property name="value">
+              <double>10000.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Max Trade Amount:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="max_trade_input">
+             <property name="placeholderText">
+              <string>Max USD per trade</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Concurrent Trades:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QSpinBox" name="concurrent_trades_input">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>100</number>
+             </property>
+             <property name="value">
+              <number>5</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="auto_select_pairs_checkbox">
+          <property name="text">
+           <string>Auto-select pairs (let the bot choose the best)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="api_group">
+          <property name="title">
+           <string>API Configuration</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_2">
+           <property name="topMargin">
+            <number>15</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>API Key:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="api_key_input">
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>API Secret:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="api_secret_input">
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_ecosystem">
+             <property name="text">
+              <string>Ecosystem:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="ecosystem_comboBox">
+             <item>
+              <property name="text">
+               <string>USDC</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>USD</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>BTC</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QPushButton" name="connect_button">
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+    background-color: QLinearGradient(
+		x1: 0, y1: 0, x2: 0, y2: 1,
+		stop: 0 #656565,
+		stop: 0.1 rgb(100, 125, 100),
+		stop: 0.5 rgb(75, 100, 75),
+		stop: 0.9 rgb(50, 75, 50)
+		stop: 1 #464646);
+	color: white;
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+QPushButton::hover {
+	color: white;
+    border-radius: 6;
+    background-color: rgb(75, 100, 75);
+}
+
+QPushButton::pressed {
+    color:  rgb(225, 225, 225);
+    background-color: rgb(50, 75, 50); 
+    border-color: #181818;
+    border-radius: 6;
+    border-style: inset;
+}</string>
+             </property>
+             <property name="text">
+              <string>Connect</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="status_group">
+          <property name="title">
+           <string>Connection Status</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="topMargin">
+            <number>15</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="status_label">
+             <property name="styleSheet">
+              <string>color: red;</string>
+             </property>
+             <property name="text">
+              <string>Not Connected</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="pair_group">
+          <property name="title">
+           <string>Trading Pairs</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <property name="topMargin">
+            <number>15</number>
+           </property>
+           <item>
+            <widget class="QLineEdit" name="pair_filter_input">
+             <property name="placeholderText">
+              <string>Filter/search pairs...</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QListWidget" name="pair_list_widget">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(0, 0, 0);
+color: rgb(151, 255, 186);</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="trading_tab">
+       <attribute name="title">
+        <string>Trading</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QSplitter" name="main_trading_splitter">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <widget class="QWidget" name="top_trading_controls">
+           <layout class="QVBoxLayout" name="top_trading_controls_layout">
+            <item>
+             <widget class="QSplitter" name="orders_splitter">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <widget class="QTableWidget" name="orders_table"/>
+              <widget class="QTableWidget" name="closed_orders_table"/>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QPushButton" name="start_trading_button">
+                <property name="minimumSize">
+                 <size>
+                  <width>300</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton
+{
+    background-color: QLinearGradient(
+		x1: 0, y1: 0, x2: 0, y2: 1,
+		stop: 0 #656565,
+		stop: 0.1 rgb(100, 125, 100),
+		stop: 0.5 rgb(75, 100, 75),
+		stop: 0.9 rgb(50, 75, 50)
+		stop: 1 #464646);
+	color: white;
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+QPushButton::hover {
+	color: white;
+    border-radius: 6;
+    background-color: rgb(75, 100, 75);
+}
+
+QPushButton::pressed {
+    color:  rgb(225, 225, 225);
+    background-color: rgb(50, 75, 50); 
+    border-color: #181818;
+    border-radius: 6;
+    border-style: inset;
+}</string>
+                </property>
+                <property name="text">
+                 <string>Start Trading</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="cycle_countdown_label">
+                <property name="styleSheet">
+                 <string>color: #ffdc00; font-weight: bold; padding: 6px;</string>
+                </property>
+                <property name="text">
+                 <string>Next cycle in: 30s</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="force_refresh_button">
+                <property name="styleSheet">
+                 <string notr="true">QPushButton
+{
+    background-color: QLinearGradient(
+		x1: 0, y1: 0, x2: 0, y2: 1,
+		stop: 0 #656565,
+		stop: 0.1 rgb(175, 200, 225)
+		stop: 0.5 rgb(125, 150, 175)
+		stop: 0.9 rgb(100, 125, 150)
+		stop: 1 #464646);
+	color: black;
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+QPushButton::hover {
+    color: black;
+    border-radius: 6;
+    background-color:rgb(125, 150, 175);
+}
+
+QPushButton::pressed {
+    color:  rgb(225, 225, 225);
+    background-color: rgb(100, 125, 150); 
+    border-color: #181818;
+    border-radius: 6;
+    border-style: inset;
+}</string>
+                </property>
+                <property name="text">
+                 <string>Force Refresh</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pause_trading_button">
+                <property name="styleSheet">
+                 <string notr="true">QPushButton
+{
+    color: white;
+    background-color: QLinearGradient(
+        x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #656565,
+        stop: 0.1 rgb(120, 80, 60)
+        stop: 0.5 rgb(100, 60, 40)
+        stop: 0.9 rgb(80, 40, 20)
+        stop: 1 #464646);
+    border-color: #1e1e1e;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 6;
+    font-size: 12px;
+    padding: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(100, 60, 40);
+    border-radius: 6;
+}
+
+QPushButton:pressed {
+    background-color: rgb(80, 40, 20); 
+    border-color: #181818;
+    border-radius: 6;
+    border-style: inset;
+}
+
+QPushButton:checked {
+    background-color: QLinearGradient(
+        x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #656565,
+        stop: 0.1 rgb(100, 60, 60)
+        stop: 0.5 rgb(80, 40, 40)
+        stop: 0.9 rgb(60, 20, 20)
+        stop: 1 #464646);
+}</string>
+                </property>
+                <property name="text">
+                 <string>Pause Trading</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="sell_all_button">
+                <property name="styleSheet">
+                 <string notr="true">QPushButton
+{
+	color: white;
+    background-color: QLinearGradient(
+		x1: 0, y1: 0, x2: 0, y2: 1,
+		stop: 0 #656565,
+		stop: 0.1 rgb(150, 100, 100)
+		stop: 0.5 rgb(120, 70, 70)
+		stop: 0.9 rgb(95, 45, 45)
+		stop: 1 #464646);
+    border-color: #1e1e1e;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 6;
+    font-size: 12px;
+    padding: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+QPushButton::hover {
+    background-color: rgb(120, 70, 70);
+    border-radius: 6;
+}
+
+QPushButton::pressed {
+    background-color: rgb(95, 45, 45); 
+    border-color: #181818;
+    border-radius: 6;
+    border-style: inset;
+}</string>
+                </property>
+                <property name="text">
+                 <string>Sell All at Market</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QGroupBox" name="order_controls_group">
+           <property name="title">
+            <string>Order Controls</string>
+           </property>
+           <layout class="QFormLayout" name="formLayout_9">
+            <property name="topMargin">
+             <number>15</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_31">
+              <property name="text">
+               <string>Pair:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="pair_combo"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_32">
+              <property name="text">
+               <string>Order Type:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="order_type_combo"/>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_33">
+              <property name="text">
+               <string>Side:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QComboBox" name="side_combo"/>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_34">
+              <property name="text">
+               <string>Amount:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QDoubleSpinBox" name="amount_input">
+              <property name="decimals">
+               <number>8</number>
+              </property>
+              <property name="minimum">
+               <double>0.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>1000000.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_35">
+              <property name="text">
+               <string>Price:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QDoubleSpinBox" name="price_input">
+              <property name="decimals">
+               <number>8</number>
+              </property>
+              <property name="minimum">
+               <double>0.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>1000000.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0" colspan="2">
+             <widget class="QPushButton" name="place_order_button">
+              <property name="text">
+               <string>Place Order</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QGroupBox" name="orders_group">
+           <property name="title">
+            <string>Active Orders and Logs</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <property name="topMargin">
+             <number>15</number>
+            </property>
+            <item>
+             <widget class="QTextEdit" name="log_text">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(0, 0, 0);
+color: rgb(151, 255, 186);</string>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="monitoring_tab">
+       <attribute name="title">
+        <string>Monitoring</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QLabel" name="bot_status_label">
+          <property name="text">
+           <string>Bot status: Idle</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="refresh_countdown_label">
+          <property name="styleSheet">
+           <string>color: #ffdc00; font-weight: bold;</string>
+          </property>
+          <property name="text">
+           <string>Next refresh in: 30s</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Market Data Pair:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="market_pair_combo"/>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="market_group">
+          <property name="title">
+           <string>Market Data</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_4">
+           <property name="topMargin">
+            <number>15</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>Pair:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="market_pair_name_label"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string>Current Price:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="price_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_14">
+             <property name="text">
+              <string>24h Volume:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="volume_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string>24h Change:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="change_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="all_pairs_table"/>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="indicators_group">
+          <property name="title">
+           <string>Technical Indicators</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_5">
+           <property name="topMargin">
+            <number>15</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_16">
+             <property name="text">
+              <string>RSI:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="rsi_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string>Fast MA:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="ma_fast_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_18">
+             <property name="text">
+              <string>Slow MA:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="ma_slow_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_19">
+             <property name="text">
+              <string>BB Upper:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="bb_upper_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_20">
+             <property name="text">
+              <string>BB Lower:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLabel" name="bb_lower_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="balance_group">
+          <property name="title">
+           <string>Account Balance</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_6">
+           <property name="topMargin">
+            <number>15</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_21">
+             <property name="text">
+              <string>USD Balance:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="usd_balance_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_22">
+             <property name="text">
+              <string>BTC Balance:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="btc_balance_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_23">
+             <property name="text">
+              <string>ETH Balance:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="eth_balance_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="rlusd_label">
+          <property name="styleSheet">
+           <string>font-size: 18px; font-weight: bold; color: #2ecc40;</string>
+          </property>
+          <property name="text">
+           <string>Realized P/L (USD): --</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="unrealized_pl_label">
+          <property name="styleSheet">
+           <string>font-size: 18px; font-weight: bold; color: #ffdc00;</string>
+          </property>
+          <property name="text">
+           <string>Unrealized P/L (USD): --</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="performance_group">
+          <property name="title">
+           <string>Performance Metrics (Demo Mode)</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_7">
+           <property name="topMargin">
+            <number>15</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_24">
+             <property name="text">
+              <string>Total Trades:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="total_trades_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_25">
+             <property name="text">
+              <string>Winning Trades:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="winning_trades_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_26">
+             <property name="text">
+              <string>Win Rate:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="win_rate_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_27">
+             <property name="text">
+              <string>Profit/Loss:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="profit_loss_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_28">
+             <property name="text">
+              <string>P/L Percentage:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLabel" name="profit_loss_percentage_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_29">
+             <property name="text">
+              <string>Running Time:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLabel" name="running_time_label">
+             <property name="text">
+              <string>--</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="settings_tab">
+       <attribute name="title">
+        <string>Settings</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <widget class="QGroupBox" name="params_group">
+          <property name="title">
+           <string>Trading Parameters</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_8">
+           <property name="topMargin">
+            <number>15</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_30">
+             <property name="text">
+              <string>Max USD Amount:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QDoubleSpinBox" name="max_usd_input">
+             <property name="maximum">
+              <double>1000000.000000000000000</double>
+             </property>
+             <property name="value">
+              <double>1000.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_37">
+             <property name="text">
+              <string>Max trade %:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QDoubleSpinBox" name="maxTradePCT_input">
+             <property name="maximum">
+              <double>100.000000000000000</double>
+             </property>
+             <property name="value">
+              <double>15.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_31">
+             <property name="text">
+              <string>Trailing Stop %:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QDoubleSpinBox" name="trailing_stop_input">
+             <property name="minimum">
+              <double>0.100000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>100.000000000000000</double>
+             </property>
+             <property name="value">
+              <double>2.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_32">
+             <property name="text">
+              <string>Stop Loss %:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QDoubleSpinBox" name="stop_loss_input">
+             <property name="minimum">
+              <double>0.100000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>100.000000000000000</double>
+             </property>
+             <property name="value">
+              <double>5.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_33">
+             <property name="text">
+              <string>Take Profit %:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QDoubleSpinBox" name="take_profit_input">
+             <property name="minimum">
+              <double>0.100000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>100.000000000000000</double>
+             </property>
+             <property name="value">
+              <double>10.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_38">
+             <property name="text">
+              <string>Trading Strategy:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_cycle_timer">
+             <property name="text">
+              <string>Cycle Timer (minutes):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QLineEdit" name="cycle_timer_input">
+             <property name="text">
+              <string>5</string>
+             </property>
+             <property name="placeholderText">
+              <string>5</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QComboBox" name="strategy_combo">
+               <property name="currentIndex">
+                <number>0</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Breakout-Focused</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Correction-FastTrades</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="strategy_refresh_button">
+               <property name="text">
+                <string>Refresh</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="ta_group">
+          <property name="title">
+           <string>Technical Analysis Parameters</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_9">
+           <property name="topMargin">
+            <number>15</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_34">
+             <property name="text">
+              <string>RSI Period:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="rsi_period_input">
+             <property name="minimum">
+              <number>2</number>
+             </property>
+             <property name="maximum">
+              <number>50</number>
+             </property>
+             <property name="value">
+              <number>14</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_35">
+             <property name="text">
+              <string>RSI Overbought:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QDoubleSpinBox" name="rsi_overbought_input">
+             <property name="minimum">
+              <double>50.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>100.000000000000000</double>
+             </property>
+             <property name="value">
+              <double>70.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_36">
+             <property name="text">
+              <string>RSI Oversold:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QDoubleSpinBox" name="rsi_oversold_input">
+             <property name="minimum">
+              <double>0.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>50.000000000000000</double>
+             </property>
+             <property name="value">
+              <double>30.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="force_trade_checkbox">
+          <property name="toolTip">
+           <string>If checked, the bot will place a buy order every cycle for testing.</string>
+          </property>
+          <property name="text">
+           <string>Force Trade (Test Mode)</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1155</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
