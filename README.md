@@ -140,3 +140,13 @@ Please open an issue for bugs or feature requests.
 ## License
 
 [MIT License](LICENSE) 
+
+
+## Support
+If you find this project useful, consider supporting me:
+
+- ☕ 
+- 💸 BTC: `bc1q65rhg0swr2k0v038kjjruhh46j3vkhkerj9wsn`
+- 💸 ETH: `0x4950eA9f48D3F70366AddB5bC67834B99c39faCa`
+- 💸 SOL: `XFyHcjqHzpcVbKrGF2WtTaaKMLvaJ4NFthHJKrfhAPE`
+- 💸 XRP: `rUHLNwJ7ZWnREKV6kDTjM1D4CDLF7v9azz`
